@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{plantilla/template :: head}">
+</head>
+
+<body>
+	<header th:replace="~{plantilla/template :: header}"></header>
+	<div class="container">
+	<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+		<div class="card-body">	
+		<form th:action="@{/views/usuarios/save}" method="post" th:object="${usuario}">
+			<div class="mb-3">
+				<input type="hidden" th:field="*{id}">
+				<label class="col-md-2" for="code">Nombre:</label>
+				<input type="text" th:field="*{nombre}" class="form-control form-control-sm col-md-6" id="dni" placeholder="Nombre">
+				<small class="from-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+				th:errors="*{nombre}">					
+				</small>
+			</div>
+			<div class="mb-3">
+				<label class="col-md-2" for="first_name">Apellido:</label>
+				<input type="text" th:field="*{apellido}" class="form-control form-control-sm col-md-6" id="nombre" placeholder="Nombre">
+				<small class="from-text text-danger" th:if="${#fields.hasErrors('apellido')}"
+				th:errors="*{apellido}">					
+				</small>
+			</div>
+			<div class="mb-3">
+				<label class="col-md-2" for="last_name">Genero:</label>
+				<select th:field="*{genero}" class="form-control form-control-sm col-md-6" id="genero">
+					<option th:each="genero:${genero}"
+						th:value="${genero.id}"
+						th:text="${genero.nombre}"/>
+				</select>
+				</small>
+			</div>
+				<div class="mb-3">
+				<label class="col-md-2" for="last_name">Correo:</label>
+				<input type="text" th:field="*{email}" class="form-control form-control-sm col-md-6" id="apellido" placeholder="Correo">
+				<small class="from-text text-danger" th:if="${#fields.hasErrors('email')}"
+				th:errors="*{email}">					
+				</small>
+			</div>
+				<div class="mb-3">
+				<label class="col-md-2" for="last_name">Contraseña:</label>
+				<input type="text" th:field="*{clave}" class="form-control form-control-sm col-md-6" id="apellido" placeholder="Contraseña">
+				<small class="from-text text-danger" th:if="${#fields.hasErrors('clave')}"
+				th:errors="*{clave}">					
+				</small>
+			</div>
+			<div class="card-footer bg-dark">
+				<input type="submit" class="btn btn-primary btn-sm" value="Guardar"/>			
+		</form>
+		</div>
+	</div>
+	</div>	
+	<footer th:replace="~{plantilla/template :: footer}"></footer>
+
+</body>
+
+</html>
