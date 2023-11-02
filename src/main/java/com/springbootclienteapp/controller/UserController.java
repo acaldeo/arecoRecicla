@@ -16,8 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springbootclienteapp.SpringbootClienteappApplication;
 import com.springbootclienteapp.models.entity.Genero;
+import com.springbootclienteapp.models.entity.Rol;
 import com.springbootclienteapp.models.entity.Usuario;
 import com.springbootclienteapp.models.service.IGeneroService;
+import com.springbootclienteapp.models.service.IRolService;
 import com.springbootclienteapp.models.service.IUsuarioService;
 
 import jakarta.validation.Valid;
@@ -30,7 +32,8 @@ public class UserController {
 	private IUsuarioService usuarioService;
 	@Autowired
 	private IGeneroService  generoService;
-	
+	@Autowired
+	private IRolService     rolService;
 
 	private static final Logger logJava = Logger.getLogger(SpringbootClienteappApplication.class);
 
@@ -38,6 +41,7 @@ public class UserController {
 	public String ListarUsuarios(Model model) {
 
 		List<Usuario> listadoUsuarios = usuarioService.Listartodos();
+ 		
 		// Permite Mapear en la vista con thymeleaf por medio del atributo th:
 		model.addAttribute("Titulo", "Lista de Usuario");
 		model.addAttribute("usuarios", listadoUsuarios);
@@ -50,11 +54,15 @@ public class UserController {
 	public String crear(Model model) {
 
 		Usuario usuario = new Usuario();
+		
 		List<Genero> listaGenero= generoService.listaGenero();
+		List<Rol> listaRol= rolService.listaRol();
 		
 		model.addAttribute("titulo", "formulario: Nuevo Usuario");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("genero", listaGenero);
+		model.addAttribute("rol", listaRol);
+		
 		return "/views/usuarios/frmCrear";
 	}
 
@@ -79,11 +87,11 @@ public class UserController {
 
 		Usuario usuario = null;
 		List<Genero> listaGenero= generoService.listaGenero();
+		List<Rol> listaRol= rolService.listaRol();
 		if (idUsuario > 0) {
 
 			usuario = usuarioService.buscarPorId(idUsuario);
-			
-			
+						
 
 			if (usuario == null) {
 
@@ -100,6 +108,7 @@ public class UserController {
 		model.addAttribute("titulo", "formulario: Editar Usuario");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("genero", listaGenero);
+		model.addAttribute("rol", listaRol);
 		
 		return "/views/usuarios/frmCrear";
 	}
