@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{plantilla/template :: head}">
+</head>
+
+<body>
+	<header th:replace="~{plantilla/template :: header}"></header>
+	<div class="container">
+		<h1 th:text="${Titulo}"></h1>
+	</div>
+	<div class="container">
+		<div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+			<div class="card-header" <span th:text="${titulo}"></span>></div>
+			<div class="card-body">
+				<h5 class="card-title" th:text="${puntaje}"></h5>
+			</div>
+		</div>
+		<footer th:replace="~{plantilla/template :: footer}"></footer>
+
+</body>
+
+</html>

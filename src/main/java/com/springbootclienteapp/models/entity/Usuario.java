@@ -31,7 +31,10 @@ public class Usuario extends BaseEntity implements Serializable  {
 
 	  @Column(name = "apellido", nullable = false)
 	  private String apellido;
-
+	  
+	  @Column(name = "dni", nullable = false, unique = true)
+	  private String dni;
+	  
 	  @Column(name = "email", nullable = false, unique = true)
 	  private String email;
 

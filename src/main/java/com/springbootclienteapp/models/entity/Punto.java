@@ -2,6 +2,8 @@ package com.springbootclienteapp.models.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -21,6 +23,7 @@ public class Punto extends BaseEntity{
 
 	@Column(name = "creado", nullable = false)
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date creado;
 	@Column(name = "cantidad", nullable = false)
 	private Integer cantidad;

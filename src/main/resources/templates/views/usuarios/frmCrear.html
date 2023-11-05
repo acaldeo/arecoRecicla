@@ -14,41 +14,49 @@
 					<div class="mb-3">
 						<input type="hidden" th:field="*{id}">
 						<label class="col-md-2" for="nombre">Nombre:</label>
-						<input type="text" th:field="*{nombre}" class="form-control form-control-sm col-md-6" id="dni"
-							placeholder="Nombre">
+						<input type="text" th:field="*{Nombre}" class="form-control form-control-sm col-md-6" id="dni"
+							placeholder="Ingresar Nombre">
 						<small class="from-text text-danger" th:if="${#fields.hasErrors('nombre')}"
-							th:errors="*{nombre}">
-						</small>
+							th:errors="*{nombre}"></small>
 					</div>
 					<div class="mb-3">
 						<label class="col-md-2" for="apellido">Apellido:</label>
 						<input type="text" th:field="*{apellido}" class="form-control form-control-sm col-md-6"
-							id="nombre" placeholder="Nombre">
+							id="nombre" placeholder="Ingresar Apelldio">
 						<small class="from-text text-danger" th:if="${#fields.hasErrors('apellido')}"
-							th:errors="*{apellido}">
-						</small>
+							th:errors="*{apellido}"></small>
+					</div>
+					<div class="mb-3">
+						<label class="col-md-2" for="dni">DNI:</label>
+						<input type="text" th:field="*{dni}" class="form-control form-control-sm col-md-6"
+							id="dni" placeholder="Ingresar DNI">
+						<small class="from-text text-danger" th:if="${#fields.hasErrors('dni')}"
+							th:errors="*{dni}"></small>
 					</div>
 					<div class="mb-3">
 						<label class="col-md-2" for="genero">Genero:</label>
 						<select th:field="*{genero}" class="form-control form-control-sm col-md-6" id="genero">
 							<option th:each="genero:${genero}" th:value="${genero.id}" th:text="${genero.nombre}" />
 						</select>
-						</small>
 					</div>
 					<div class="mb-3">
 						<label class="col-md-2" for="correo">Correo:</label>
 						<input type="text" th:field="*{email}" class="form-control form-control-sm col-md-6"
 							id="apellido" placeholder="Correo">
-						<small class="from-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-						</small>
+						<small class="from-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
 					</div>
 				
 					<div class="mb-3">
 						<label class="col-md-2" for="contraseña">Contraseña:</label>
 						<input type="text" th:field="*{clave}" class="form-control form-control-sm col-md-6"
 							id="apellido" placeholder="Contraseña">
-						<small class="from-text text-danger" th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}">
-						</small>
+						<small class="from-text text-danger" th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}"></small>
+					</div>
+					<div class="mb-3">
+						<label class="col-md-2" for="rol">Rol:</label>
+						<select th:field="*{roles}" class="form-control form-control-sm col-md-6" id="rol">
+							<option th:each="rol:${rol}" th:value="${rol.id}" th:text="${rol.nombre}" />
+						</select>
 					</div>
 					<div class="card-footer bg-dark">
 						<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />

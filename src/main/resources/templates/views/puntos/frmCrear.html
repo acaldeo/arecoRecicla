@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{plantilla/template :: head}">
+</head>
+
+<body>
+	<header th:replace="~{plantilla/template :: header}"></header>
+	<div class="container">
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+				<form th:action="@{/views/puntos/save}" method="post" th:object="${punto}">
+					<div class="mb-3">
+						<input type="hidden" th:field="*{id}">
+						<label class="col-md-2" for="cantidad">Puntos:</label>
+						<input type="text" th:field="*{cantidad}" class="form-control form-control-sm col-md-6" id="cantidad"
+							placeholder="Ingresar Cantidad de Puntos">
+						<small class="from-text text-danger" th:if="${#fields.hasErrors('cantidad')}"
+							th:errors="*{cantidad}"></small>
+					</div>
+					<div class="mb-3">
+						<label class="col-md-2" for="creado">Fecha:</label>
+						<input type="date" th:field="*{creado}" class="form-control form-control-sm col-md-6"
+							id="creado" placeholder="Ingresar Fecha de Carga de Puntos">
+						<small class="from-text text-danger" th:if="${#fields.hasErrors('creado')}"
+							th:errors="*{creado}"></small>
+					</div>
+					<div class="mb-3">
+						<label class="col-md-2" for="descripcion">Descripción:</label>
+						<input type="text" th:field="*{descripcion}" class="form-control form-control-sm col-md-6"
+							id="descripcion" placeholder="Ingresar una descripción de la carga">
+						<small class="from-text text-danger" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></small>
+					</div>
+					<div class="mb-3">
+						<label class="col-md-2" for="usuario">usuario:</label>
+						<select th:field="*{usuario}" class="form-control form-control-sm col-md-6" id="usuario">
+							<option th:each="usuario:${usuario}" th:value="${usuario.id}" th:text="${usuario.nombre}" />
+						</select>
+					</div>
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="~{plantilla/template :: footer}"></footer>
+
+</body>
+
+</html>

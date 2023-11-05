@@ -10,13 +10,15 @@
 		<h1 th:text="${Titulo}"></h1>
 	</div>
 	<div class="container">
-		<a class="btn btn-primary btn-sm" th:href="@{/views/usuarios/create}" th:text="'Nuevo Usuario'" title="Crear Nuevo Registro"></a>		
+		<a class="btn btn-primary btn-sm" th:href="@{/views/usuarios/create}" th:text="'Nuevo Usuario'"
+			title="Crear Nuevo Registro"></a>
 		<table class="table table-success table-striped">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">Nombre</th>
 					<th scope="col">Apellido</th>
+					<th scope="col">DNI</th>
 					<th scope="col">Genero</th>
 					<th scope="col">Contraseña</th>
 					<th scope="col">Correo</th>
@@ -26,19 +28,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cl:${usuarios}">
+				<tr th:each="cl,iterStat:${usuarios}">
 					<th scope="row" th:text="${cl.id}"></th>
 					<td th:text="${cl.nombre}"></td>
 					<td th:text="${cl.apellido}"></td>
+					<td th:text="${cl.dni}"></td>
 					<td th:text="${cl.genero.nombre}"></td>
 					<td th:text="${cl.clave}"></td>
 					<td th:text="${cl.email}"></td>
-					<td ><a class="btn btn-success btn-sm" th:href="@{/views/usuarios/edit/} + ${cl.id}" th:text="'Editar'" title="Editar Registro"></a></td>
-					<td ><a class="btn btn-danger btn-sm" th:href="@{/views/usuarios/delete/} + ${cl.id}" th:text="'Elimar'" title="Eliminar Registro" onclick="return confirm('Esta seguro de eliminar este registro?');"></a></td>
+					<td><span th:each="rol, iterStat : ${cl.roles}" th:text="${rol.nombre}"></span></td>
+					<td><a class="btn btn-success btn-sm" th:href="@{/views/usuarios/edit/} + ${cl.id}"
+							th:text="'Editar'" title="Editar Registro"></a></td>
+					<td><a class="btn btn-danger btn-sm" th:href="@{/views/usuarios/delete/} + ${cl.id}"
+							th:text="'Elimar'" title="Eliminar Registro"
+							onclick="return confirm('Esta seguro de eliminar este registro?');"></a></td>
 				</tr>
 			</tbody>
 
 		</table>
+		
 	</div>
 	<footer th:replace="~{plantilla/template :: footer}"></footer>
 
